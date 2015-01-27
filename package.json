@@ -1,0 +1,28 @@
+{
+  "name": "maven",
+  "version": "1.0.0",
+  "description": "Maven wrapper for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:headcr4sh/node-maven.git"
+  },
+  "keywords": [
+    "maven",
+    "mvn",
+    "m2",
+    "java"
+  ],
+  "author": "Benjamin P. Jung <headcr4sh@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/headcr4sh/node-maven/issues"
+  },
+  "homepage": "https://github.com/headcr4sh/node-maven",
+  "dependencies": {
+    "es6-promise": "=2.0.1"
+  }
+}
