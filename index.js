@@ -100,8 +100,8 @@ var _run = function (mvn, commands, defines) {
 */
 var Maven = function (options) {
   this.options = options || {};
-  if (!options.basedir) {
-    otptions.basedir = __basedir;
+  if (!this.options.basedir) {
+    this.options.basedir = __basedir;
   }
 };
 
