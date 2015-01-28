@@ -61,7 +61,7 @@ var _spawn = function (mvn, args) {
 * @param {!Maven} mvn
 * @param {string|!Array.<string>} commands
 *     Command(s) to be executed.
-* @param {Object<string, string>=} defines
+* @param {Object<string, string>} [defines]
 *     Defines to be passed to the mvn executable via "-D" flags.
 */
 var _run = function (mvn, commands, defines) {
@@ -87,27 +87,27 @@ var _run = function (mvn, commands, defines) {
 /**
  * @typedef {Object} MavenOptions
  * @property {!string} basedir
- *   Base directory
+ *   Base directory (Default is: <code>__dirname</code>)
  * @property {?string} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
  */
 
 /**
 * Creates a new Maven wrapper instance.
-* @param {MavenOptions=} options
+* @param {MavenOptions} [options]
 *     Configuration options.
 * @constructor
 */
 var Maven = function (options) {
   this.options = options || {};
   if (!this.options.basedir) {
-    this.options.basedir = __basedir;
+    this.options.basedir = __dirname;
   }
 };
 
 /**
  * Creates a new Maven wrapper instance.
- * @param {MavenOptions=} options
+ * @param {MavenOptions} [options]
  *     Configuration options.
  * @returns {!Maven}
  *   A new Maven wrapper instance.
@@ -120,7 +120,7 @@ Maven.create = function (options) {
  * Executes one or more Maven commands.
  * @param {!Array.<string>|string} commands
  *     A list of commands to be executed or a single command.
- * @param {Object.<string, *>=} defines
+ * @param {Object.<string, *>} [defines]
  *     List of defines that will be passed to the Java VM via
  *     <code>-Dkey=value</code>
  */
