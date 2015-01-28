@@ -1,5 +1,27 @@
 /* jslint node: true */
 
+/*
+* Copyright (C) 2015 Benjamin P. Jung.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+
+/**
+ * Maven for Node.js.
+ * @module maven
+ */
+
 var util = require('util');
 var Promise = Promise || require('es6-promise').Promise;
 
@@ -14,7 +36,7 @@ var Promise = Promise || require('es6-promise').Promise;
 var _spawn = function (mvn, args) {
   var spawn = require('child_process').spawn;
   return new Promise(function (resolve, reject) {
-    var proc = spawn('mvn', args, { cwd: mvn.basedir }, function (error, stdout, stderr) {
+    var proc = spawn('mvn', args, { cwd: mvn.options.basedir }, function (error, stdout, stderr) {
       if (error) {
         reject(error);
       } else {
@@ -44,6 +66,9 @@ var _spawn = function (mvn, args) {
 */
 var _run = function (mvn, commands, defines) {
   var args = [];
+  if (mvn.options.file) {
+    args.push('-f', 'mvn.options.file');
+  }
   if (defines) {
     for (var define in defines) {
       if (defines.hasOwnProperty(define)) {
@@ -56,33 +81,52 @@ var _run = function (mvn, commands, defines) {
   } else {
     args.concat(commands);
   }
-  console.log(args);
   return _spawn(mvn, args);
 };
 
 /**
+ * @typedef {Object} MavenOptions
+ * @property {!string} basedir
+ *   Base directory
+ * @property {?string} file
+ *   Filename of the POM. (Results in <code>-f ${file}</code>)
+ */
+
+/**
 * Creates a new Maven wrapper instance.
-* @param {string=} basedir
-*     Base directory for invoking 'mvn'. Uses __dirname if not specified.
+* @param {MavenOptions=} options
+*     Configuration options.
 * @constructor
 */
-var Maven = function (basedir) {
-  this.basedir = basedir || __dirname;
+var Maven = function (options) {
+  this.options = options || {};
+  if (!options.basedir) {
+    otptions.basedir = __basedir;
+  }
 };
 
 /**
  * Creates a new Maven wrapper instance.
- * @param {string=} basedir
- *     Base directory for invoking 'mvn'. Uses __dirname if not specified.
- * @return {!Maven}
+ * @param {MavenOptions=} options
+ *     Configuration options.
+ * @returns {!Maven}
  *   A new Maven wrapper instance.
  */
-Maven.create = function (basedir) {
-  return new Maven(basedir);
-}
+Maven.create = function (options) {
+  return new Maven(options);
+};
 
+/**
+ * Executes one or more Maven commands.
+ * @param {!Array.<string>|string} commands
+ *     A list of commands to be executed or a single command.
+ * @param {Object.<string, *>=} defines
+ *     List of defines that will be passed to the Java VM via
+ *     <code>-Dkey=value</code>
+ */
 Maven.prototype.execute = function (commands, defines) {
   return _run(this, commands, defines);
 };
+
 
 module.exports = Maven;
