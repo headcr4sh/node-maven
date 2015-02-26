@@ -67,7 +67,7 @@ var _spawn = function (mvn, args) {
 var _run = function (mvn, commands, defines) {
   var args = [];
   if (mvn.options.file) {
-    args.push('-f', 'mvn.options.file');
+    args.push('-f', mvn.options.file);
   }
   if (defines) {
     for (var define in defines) {
