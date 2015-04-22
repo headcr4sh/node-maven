@@ -51,8 +51,8 @@ var _spawn = function (mvn, args) {
         resolve();
       }
     });
-    proc.stdout.on('data', function(data) { process.stdout.write('' + data); });
-    proc.stderr.on('data', function(data) { process.stderr.write('' + data); });
+    proc.stdout.on('data', process.stdout.write.bind(process.stdout));
+    proc.stderr.on('data', process.stderr.write.bind(process.stderr));
   });
 };
 
