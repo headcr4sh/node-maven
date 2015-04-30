@@ -19,11 +19,12 @@
 
 /**
  * Maven for Node.js.
- * @module maven
+ * @module node-maven
  */
 
-var util = require('util');
-var Promise = Promise || require('es6-promise').Promise;
+
+var process = require('process');
+require('es6-promise').polyfill();
 
 /**
 * A simple wrapper around child_process.spawn that returns a promise.
@@ -76,6 +77,9 @@ var _run = function (mvn, commands, defines) {
       }
     }
   }
+  if (mvn.options.profiles && mvn.options.profiles.length > 0) {
+    args.push('-P', mvn.options.profiles.join(','));
+  }
   if (typeof commands === 'string') {
     args.push(commands);
   } else {
@@ -87,9 +91,11 @@ var _run = function (mvn, commands, defines) {
 /**
  * @typedef {Object} MavenOptions
  * @property {!string} basedir
- *   Base directory (Default is: <code>__dirname</code>)
+ *   Base directory (Default is: <code>process.cwd()</code>)
  * @property {?string} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
+ * @property {?Array.<string>} profiles
+ *   List of profiles to be enabled or disabled.
  */
 
 /**
@@ -101,7 +107,7 @@ var _run = function (mvn, commands, defines) {
 var Maven = function (options) {
   this.options = options || {};
   if (!this.options.basedir) {
-    this.options.basedir = __dirname;
+    this.options.basedir = process.cwd();
   }
 };
 

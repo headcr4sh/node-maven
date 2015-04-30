@@ -24,7 +24,7 @@ Creating a Maven wrapper instance is pretty much straight forward:
 
 The following options can be passed to the <code>create</code> method:
 
-#### `basedir` (default: ```__basedir```)
+#### `basedir` (default: ```process.cwd()```)
 This parameter can be used to define the base directory when invoking the Maven command line.
 
 #### `file` (default: ```undefined```)
