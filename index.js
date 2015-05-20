@@ -83,7 +83,7 @@ var _run = function (mvn, commands, defines) {
   if (typeof commands === 'string') {
     args.push(commands);
   } else {
-    args.concat(commands);
+    args = args.concat(commands);
   }
   return _spawn(mvn, args);
 };
