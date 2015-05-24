@@ -17,6 +17,9 @@
     "java"
   ],
   "author": "Benjamin P. Jung <headcr4sh@gmail.com>",
+  "contributors": [
+    "Dmitry Broznich <xmbroz@gmail.com>"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/headcr4sh/node-maven/issues"
