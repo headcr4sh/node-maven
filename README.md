@@ -30,9 +30,14 @@ This parameter can be used to define the base directory when invoking the Maven 
 #### `file` (default: ```undefined```)
 Can be used to pass a specific POM file to the Maven command line. If nothing is specified, the Maven process itself will look for a file called ```pom.xml``` in the base directory.
 
+### `settings` (default: ```undefined```)
+Can be used to override the default settings file when invoking Maven.
+If nothing is specified, the Maven process itself will load ```.m2/settings.xml```
+in the user's home directory.
+
 ## Executing Maven commands
 
-Executing maven commands is simple, too:
+Executing Maven commands is simple, too:
 ```javascript
     mvn.execute(commands, defines);
 ```

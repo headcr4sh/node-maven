@@ -67,7 +67,7 @@ var _spawn = function (mvn, args) {
 */
 var _run = function (mvn, commands, defines) {
   var args = [];
-  if (mvn.options.file) {
+  if (mvn.options.settings) {
     args.push('-s', mvn.options.settings);
   }
   if (mvn.options.file) {
@@ -97,6 +97,8 @@ var _run = function (mvn, commands, defines) {
  *   Base directory (Default is: <code>process.cwd()</code>)
  * @property {?string} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
+ * @property {?string} settings
+ *   Filename of settings.xml to be used (Results in <code>-s ${setings}</code>)
  * @property {?Array.<string>} profiles
  *   List of profiles to be enabled or disabled.
  */
