@@ -68,6 +68,9 @@ var _spawn = function (mvn, args) {
 var _run = function (mvn, commands, defines) {
   var args = [];
   if (mvn.options.file) {
+    args.push('-s', mvn.options.settings);
+  }
+  if (mvn.options.file) {
     args.push('-f', mvn.options.file);
   }
   if (defines) {
@@ -83,7 +86,7 @@ var _run = function (mvn, commands, defines) {
   if (typeof commands === 'string') {
     args.push(commands);
   } else {
-    args.concat(commands);
+    args = args.concat(commands);
   }
   return _spawn(mvn, args);
 };
