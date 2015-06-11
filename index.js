@@ -27,6 +27,12 @@ var process = require('process');
 require('es6-promise').polyfill();
 
 /**
+ * child_process.spawn works a bit different when using
+ * Windows.
+ */
+var isWin = /^win/.test(process.platform);
+
+/**
 * A simple wrapper around child_process.spawn that returns a promise.
 * @private
 * @param {!Maven} mvn
@@ -36,8 +42,16 @@ require('es6-promise').polyfill();
 */
 var _spawn = function (mvn, args) {
   var spawn = require('child_process').spawn;
+  // Command to be executed. 'mvn' or 'mvn.bat' when using Windows.
+  var cmd = 'mvn';
   return new Promise(function (resolve, reject) {
-    var proc = spawn('mvn', args, { cwd: mvn.options.basedir }, function (error, stdout, stderr) {
+    if (isWin) {
+      args.unshift(cmd);
+      args.unshift('/c'),
+      args.unshift('/s');
+      cmd = 'cmd.exe';
+    }
+    var proc = spawn(cmd, args, { cwd: mvn.options.basedir }, function (error, stdout, stderr) {
       if (error) {
         reject(error);
       } else {
