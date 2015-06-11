@@ -22,9 +22,7 @@
  * @module node-maven
  */
 
-
-var process = require('process');
-require('es6-promise').polyfill();
+var Promise = Promise || require('es6-promise').Promise;
 
 /**
  * child_process.spawn works a bit different when using
