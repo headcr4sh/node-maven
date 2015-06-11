@@ -10,7 +10,7 @@ npm install maven
 ## Basic usage
 ```javascript
     var mvn = require('maven').create({
-      basedir: '/path/to/your/maven-project'
+      cwd: '/path/to/your/maven-project'
     });
     mvn.execute(['clean', 'install'], { 'skipTests': true });
 ```
@@ -24,16 +24,32 @@ Creating a Maven wrapper instance is pretty much straight forward:
 
 The following options can be passed to the <code>create</code> method:
 
-#### `basedir` (default: ```process.cwd()```)
-This parameter can be used to define the base directory when invoking the Maven command line.
+#### `cwd` (default: ```process.cwd()```)
+This parameter can be used to define the working directory when invoking the Maven command line.
 
 #### `file` (default: ```undefined```)
 Can be used to pass a specific POM file to the Maven command line. If nothing is specified, the Maven process itself will look for a file called ```pom.xml``` in the base directory.
+
+#### `profiles` (default: ```[]```)
+An array that can be used to enable or disable profiles.
+You can either explicitly enable a profile by adding it's name or disable a
+profile by pre-pending ```!``` to it's name.
+Will be passed to Java/Maven as ```-PprofileEnabled,!profileDisabled``` parameter.
 
 ### `settings` (default: ```undefined```)
 Can be used to override the default settings file when invoking Maven.
 If nothing is specified, the Maven process itself will load ```.m2/settings.xml```
 in the user's home directory.
+
+#### `quiet` (default: ```false```)
+Quiet output - only show errors if set to ```true```.
+
+#### `debug` (default: ```false```)
+Produce execution debug output if set to ```true```.
+
+#### `updateSnapshots` (default: ```false```)
+Forces a check for missing releases and updated snapshots on
+remote repositories if set to ```true```.
 
 ## Executing Maven commands
 

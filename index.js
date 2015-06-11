@@ -51,7 +51,7 @@ var _spawn = function (mvn, args) {
       args.unshift('/s');
       cmd = 'cmd.exe';
     }
-    var proc = spawn(cmd, args, { cwd: mvn.options.basedir }, function (error, stdout, stderr) {
+    var proc = spawn(cmd, args, { cwd: mvn.options.cwd }, function (error, stdout, stderr) {
       if (error) {
         reject(error);
       } else {
@@ -87,6 +87,15 @@ var _run = function (mvn, commands, defines) {
   if (mvn.options.file) {
     args.push('-f', mvn.options.file);
   }
+  if (mvn.options.quiet) {
+    args.push('-q');
+  }
+  if (mvn.options.debug) {
+    args.push('-d');
+  }
+  if (mvn.options.updateSnapshots) {
+    args.push('-U');
+  }
   if (defines) {
     for (var define in defines) {
       if (defines.hasOwnProperty(define)) {
@@ -107,14 +116,21 @@ var _run = function (mvn, commands, defines) {
 
 /**
  * @typedef {Object} MavenOptions
- * @property {!string} basedir
- *   Base directory (Default is: <code>process.cwd()</code>)
+ * @property {!string} cwd
+ *   Working directory (Default is: <code>process.cwd()</code>)
  * @property {?string} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
  * @property {?string} settings
  *   Filename of settings.xml to be used (Results in <code>-s ${setings}</code>)
  * @property {?Array.<string>} profiles
  *   List of profiles to be enabled or disabled.
+ * @property {boolean} quiet
+ *   Quiet output - only show errors if set to <code>true</code>.
+ * @property {boolean} debug
+ *   Produce execution debug output if set to <code>true</code>.
+ * @property {boolean} updateSnapshots
+ *   Forces a check for missing releases and updated snapshots on
+ *   remote repositories. Defaults to <code>false</code>.
  */
 
 /**
@@ -125,8 +141,8 @@ var _run = function (mvn, commands, defines) {
 */
 var Maven = function (options) {
   this.options = options || {};
-  if (!this.options.basedir) {
-    this.options.basedir = process.cwd();
+  if (!this.options.cwd) {
+    this.options.cwd = process.cwd();
   }
 };
 
