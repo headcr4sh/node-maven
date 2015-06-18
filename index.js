@@ -89,7 +89,7 @@ var _run = function (mvn, commands, defines) {
     args.push('-q');
   }
   if (mvn.options.debug) {
-    args.push('-d');
+    args.push('-X');
   }
   if (mvn.options.updateSnapshots) {
     args.push('-U');
