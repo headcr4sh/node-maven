@@ -1,6 +1,6 @@
 {
   "name": "maven",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Maven wrapper for Node.js",
   "main": "index.js",
   "scripts": {

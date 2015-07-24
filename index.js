@@ -51,9 +51,9 @@ var _spawn = function (mvn, args) {
     }
     var proc = spawn(cmd, args, { cwd: mvn.options.cwd });
     proc.on('error', reject);
-    proc.on('exit', function (code) {
+    proc.on('exit', function (code, signal) {
       if (code !== 0) {
-        reject({ code: code});
+        reject({ 'code': code, 'signal': signal });
       } else {
         resolve();
       }
