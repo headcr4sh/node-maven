@@ -49,15 +49,9 @@ var _spawn = function (mvn, args) {
       args.unshift('/s');
       cmd = 'cmd.exe';
     }
-    var proc = spawn(cmd, args, { cwd: mvn.options.cwd }, function (error, stdout, stderr) {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(stdout);
-      }
-    });
+    var proc = spawn(cmd, args, { cwd: mvn.options.cwd });
     proc.on('error', reject);
-    proc.on('close', function (code) {
+    proc.on('exit', function (code) {
       if (code !== 0) {
         reject({ code: code});
       } else {
