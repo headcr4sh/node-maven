@@ -108,19 +108,19 @@ var _run = function (mvn, commands, defines) {
 
 /**
  * @typedef {Object} MavenOptions
- * @property {!string} cwd
+ * @property {(string|undefined)} cwd
  *   Working directory (Default is: <code>process.cwd()</code>)
- * @property {?string} file
+ * @property {(string|undefined)} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
- * @property {?string} settings
+ * @property {(string|undefined)} settings
  *   Filename of settings.xml to be used (Results in <code>-s ${setings}</code>)
- * @property {?Array.<string>} profiles
+ * @property {(!Array.<string>|undefined)} profiles
  *   List of profiles to be enabled or disabled.
- * @property {boolean} quiet
+ * @property {(boolean|undefined)} quiet
  *   Quiet output - only show errors if set to <code>true</code>.
- * @property {boolean} debug
+ * @property {(boolean|undefined)} debug
  *   Produce execution debug output if set to <code>true</code>.
- * @property {boolean} updateSnapshots
+ * @property {(boolean|undefined)} updateSnapshots
  *   Forces a check for missing releases and updated snapshots on
  *   remote repositories. Defaults to <code>false</code>.
  */
