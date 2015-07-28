@@ -47,7 +47,7 @@ var _spawn = function (mvn, args) {
       args.unshift(cmd);
       args.unshift('/c'),
       args.unshift('/s');
-      cmd = 'cmd.exe';
+      cmd = process.env.COMSPEC || 'cmd.exe';
     }
     var proc = spawn(cmd, args, { cwd: mvn.options.cwd });
     proc.on('error', reject);
