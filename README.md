@@ -36,7 +36,7 @@ You can either explicitly enable a profile by adding it's name or disable a
 profile by pre-pending ```!``` to it's name.
 Will be passed to Java/Maven as ```-PprofileEnabled,!profileDisabled``` parameter.
 
-### `settings` (default: ```undefined```)
+#### `settings` (default: ```undefined```)
 Can be used to override the default settings file when invoking Maven.
 If nothing is specified, the Maven process itself will load ```.m2/settings.xml```
 in the user's home directory.
