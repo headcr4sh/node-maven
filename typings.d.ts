@@ -62,6 +62,4 @@ interface Maven {
 
 }
 
-declare module "maven" {
-    export = Maven;
-}
+export default Maven;
