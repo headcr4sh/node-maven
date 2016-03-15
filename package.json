@@ -1,8 +1,10 @@
 {
+  "$schema": "http://json.schemastore.org/package#",
   "name": "maven",
-  "version": "3.0.6",
+  "version": "4.0.0",
   "description": "Maven wrapper for Node.js",
   "main": "index.js",
+  "preferGlobal": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,7 +27,8 @@
     "url": "https://github.com/headcr4sh/node-maven/issues"
   },
   "homepage": "https://github.com/headcr4sh/node-maven",
-  "dependencies": {
-    "es6-promise": "=2.3.x"
-  }
+  "engines": {
+      "node": ">=4.0.0"
+  },
+  "typings": "./typings.d.ts"
 }

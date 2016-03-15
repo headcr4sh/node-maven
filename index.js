@@ -1,20 +1,20 @@
-/* jslint node: true */
+"use strict";
 
 /*
-* Copyright (C) 2015 Benjamin P. Jung.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (C) 2015-2016 Benjamin P. Jung.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 
 /**
@@ -22,13 +22,11 @@
  * @module node-maven
  */
 
-var Promise = Promise || require('es6-promise').Promise;
-
 /**
  * child_process.spawn works a bit different when using
  * Windows.
  */
-var isWin = /^win/.test(process.platform);
+const isWin = /^win/.test(process.platform);
 
 /**
 * A simple wrapper around child_process.spawn that returns a promise.
@@ -38,20 +36,20 @@ var isWin = /^win/.test(process.platform);
 *     Command to be executed.
 * @return {Promise.<void>}
 */
-var _spawn = function (mvn, args) {
-  var spawn = require('child_process').spawn;
+function _spwan(mvn, args) {
+  const spawn = require('child_process').spawn;
   // Command to be executed. 'mvn' or 'mvn.bat' when using Windows.
-  var cmd = 'mvn';
-  return new Promise(function (resolve, reject) {
+  let cmd = 'mvn';
+  return new Promise((resolve, reject) => {
     if (isWin) {
       args.unshift(cmd);
       args.unshift('/c'),
       args.unshift('/s');
       cmd = process.env.COMSPEC || 'cmd.exe';
     }
-    var proc = spawn(cmd, args, { cwd: mvn.options.cwd });
+    const proc = spawn(cmd, args, { 'cwd': mvn.options.cwd });
     proc.on('error', reject);
-    proc.on('exit', function (code, signal) {
+    proc.on('exit', (code, signal) => {
       if (code !== 0) {
         reject({ 'code': code, 'signal': signal });
       } else {
@@ -71,8 +69,8 @@ var _spawn = function (mvn, args) {
 * @param {Object<string, string>} [defines]
 *     Defines to be passed to the mvn executable via "-D" flags.
 */
-var _run = function (mvn, commands, defines) {
-  var args = [];
+function _run(mvn, commands, defines) {
+  const args = [];
   if (mvn.options.settings) {
     args.push('-s', mvn.options.settings);
   }
@@ -88,15 +86,18 @@ var _run = function (mvn, commands, defines) {
   if (mvn.options.updateSnapshots) {
     args.push('-U');
   }
+  if (mvn.options.threads) {
+      args.push(`-T ${maven.options.threads}`);
+  }
   if (defines) {
-    for (var define in defines) {
+    for (let define in defines) {
       if (defines.hasOwnProperty(define)) {
-        args.push('-D' + define + '=' + defines[define]);
+        args.push(`-D${define}=${defines[define]}`);
       }
     }
   }
   if (mvn.options.profiles && mvn.options.profiles.length > 0) {
-    args.push('-P', mvn.options.profiles.join(','));
+    args.push(`-P${mvn.options.profiles.join(',')}`);
   }
   if (typeof commands === 'string') {
     args.push(commands);
@@ -123,43 +124,48 @@ var _run = function (mvn, commands, defines) {
  * @property {(boolean|undefined)} updateSnapshots
  *   Forces a check for missing releases and updated snapshots on
  *   remote repositories. Defaults to <code>false</code>.
+ * @property {(number|undefined)} threads
+ *   Thread count, for instance 2.0C where C is core multiplied
  */
 
-/**
-* Creates a new Maven wrapper instance.
-* @param {MavenOptions} [options]
-*     Configuration options.
-* @constructor
-*/
-var Maven = function (options) {
-  this.options = options || {};
-  if (!this.options.cwd) {
-    this.options.cwd = process.cwd();
-  }
-};
 
 /**
- * Creates a new Maven wrapper instance.
- * @param {MavenOptions} [options]
- *     Configuration options.
- * @returns {!Maven}
- *   A new Maven wrapper instance.
+ * Maven wrapper.
  */
-Maven.create = function (options) {
-  return new Maven(options);
-};
-
-/**
- * Executes one or more Maven commands.
- * @param {!Array.<string>|string} commands
- *     A list of commands to be executed or a single command.
- * @param {Object.<string, *>} [defines]
- *     List of defines that will be passed to the Java VM via
- *     <code>-Dkey=value</code>
- */
-Maven.prototype.execute = function (commands, defines) {
-  return _run(this, commands, defines);
-};
-
+class Maven {
+    /**
+     * Creates a new Maven wrapper instance.
+     * @param {MavenOptions} [options]
+     *     Configuration options.
+     */
+    constructor(options) {
+        this.options = options || {};
+        if (!this.options.cwd) {
+            this.options.cwd = process.cwd();
+        }
+    }
+    /**
+     * Creates a new Maven wrapper instance.
+     * @param {MavenOptions} [options]
+     *     Configuration options.
+     * @returns {!Maven}
+     *   A new Maven wrapper instance.
+     */
+    static create(options) {
+        return new Maven(options);
+    }
+    /**
+     * Executes one or more Maven commands.
+     * @param {!Array.<string>|string} commands
+     *     A list of commands to be executed or a single command.
+     * @param {Object.<string, *>} [defines]
+     *     List of defines that will be passed to the Java VM via
+     *     <code>-Dkey=value</code>
+     * @return {!Promise.<?>}
+     */
+    execute(commands, defines) {
+        return _run(this, commands, defines);
+    }
+}
 
 module.exports = Maven;
