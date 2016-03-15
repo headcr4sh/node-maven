@@ -9,10 +9,10 @@ npm install maven
 
 ## Basic usage
 ```javascript
-    var mvn = require('maven').create({
+    const mvn = require('maven').create({
       cwd: '/path/to/your/maven-project'
     });
-    mvn.execute(['clean', 'install'], { 'skipTests': true }).then(function () {
+    mvn.execute(['clean', 'install'], { 'skipTests': true }).then(() => {
       // As mvn.execute(..) returns a promise, you can use this block to continue
       // your stuff, once the execution of the command has been finished successfully.
     });
@@ -22,7 +22,7 @@ npm install maven
 
 Creating a Maven wrapper instance is pretty much straight forward:
 ```javascript
-    var mvn = require('maven').create(options);
+    const mvn = require('maven').create(options);
 ```
 
 The following options can be passed to the <code>create</code> method:

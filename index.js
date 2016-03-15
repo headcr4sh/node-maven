@@ -36,7 +36,7 @@ const isWin = /^win/.test(process.platform);
 *     Command to be executed.
 * @return {Promise.<void>}
 */
-function _spwan(mvn, args) {
+function _spawn(mvn, args) {
   const spawn = require('child_process').spawn;
   // Command to be executed. 'mvn' or 'mvn.bat' when using Windows.
   let cmd = 'mvn';
