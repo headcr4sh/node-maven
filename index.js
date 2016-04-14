@@ -70,7 +70,7 @@ function _spawn(mvn, args) {
 *     Defines to be passed to the mvn executable via "-D" flags.
 */
 function _run(mvn, commands, defines) {
-  const args = [];
+  let args = [];
   if (mvn.options.settings) {
     args.push('-s', mvn.options.settings);
   }
