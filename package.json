@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package#",
   "name": "maven",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "Maven wrapper for Node.js",
   "main": "index.js",
   "preferGlobal": false,
@@ -20,7 +20,8 @@
   ],
   "author": "Benjamin P. Jung <headcr4sh@gmail.com>",
   "contributors": [
-    "Dmitry Broznich <xmbroz@gmail.com>"
+    "Dmitry Broznich <xmbroz@gmail.com>",
+    "Yuri Bett <yuribett@gmail.com>"
   ],
   "license": "Apache-2.0",
   "bugs": {
