@@ -87,7 +87,7 @@ function _run(mvn, commands, defines) {
     args.push('-U');
   }
   if (mvn.options.threads) {
-      args.push(`-T ${maven.options.threads}`);
+      args.push(`-T ${mvn.options.threads}`);
   }
   if (defines) {
     for (let define in defines) {
