@@ -86,6 +86,9 @@ function _run(mvn, commands, defines) {
   if (mvn.options.updateSnapshots) {
     args.push('-U');
   }
+  if (mvn.options.offline) {
+    args.push('-o');
+  }
   if (mvn.options.threads) {
       args.push(`-T ${mvn.options.threads}`);
   }
@@ -122,6 +125,8 @@ function _run(mvn, commands, defines) {
  * @property {(boolean|undefined)} debug
  *   Produce execution debug output if set to <code>true</code>.
  * @property {(boolean|undefined)} updateSnapshots
+ *   Produce execution offline if set to <code>true</code>.
+ * @property {(boolean|undefined)} offline
  *   Forces a check for missing releases and updated snapshots on
  *   remote repositories. Defaults to <code>false</code>.
  * @property {(number|undefined)} threads
