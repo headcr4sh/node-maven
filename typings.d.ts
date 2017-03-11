@@ -32,6 +32,8 @@ type MavenOptions = {
     debug?: boolean,
     /** Forces a check for missing releases and updated snapshots on remote repositories. Defaults to <code>false</code>. */
     updateSnapshots?: boolean,
+    /** Produce execution offline if set to <code>true</code>. */
+    offline?: boolean,
     /** Thread count, for instance 2.0C where C is core multiplied */
     threads?: number
 };
