@@ -34,6 +34,8 @@ type MavenOptions = {
     updateSnapshots?: boolean,
     /** Produce execution offline if set to <code>true</code>. */
     offline?: boolean,
+    /** Prevents Maven from building submodules if set to <code>true</code>. */
+    nonRecursive?: boolean,
     /** Thread count, for instance 2.0C where C is core multiplied */
     threads?: number
 };

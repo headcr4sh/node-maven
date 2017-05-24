@@ -57,6 +57,9 @@ remote repositories if set to ```true```.
 #### `offline` (default: ```false```)
 Produce execution offline if set to ```true```.
 
+#### `nonRecursive` (default: ```false```)
+Prevents Maven from building submodules if set to ```true```.
+
 #### `threads` (default: ```undefined```)
 Thread count, for instance 2.0C where C is core multiplied
 
