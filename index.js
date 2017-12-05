@@ -38,8 +38,8 @@ const isWin = /^win/.test(process.platform);
 */
 function _spawn(mvn, args) {
   const spawn = require('child_process').spawn;
-  // Command to be executed. 'mvn' or 'mvn.bat' when using Windows.
-  let cmd = 'mvn';
+  // Command to be executed.
+  let cmd = mvn.options.cmd || 'mvn';
   return new Promise((resolve, reject) => {
     if (isWin) {
       args.unshift(cmd);
@@ -117,6 +117,9 @@ function _run(mvn, commands, defines) {
  * @typedef {Object} MavenOptions
  * @property {(string|undefined)} cwd
  *   Working directory (Default is: <code>process.cwd()</code>)
+ * @property {{string|undefined}} cmd
+ *   Maven executable relative to <code>cwd</code>. Default is 'mvn' or 
+ *   'mvn.bat' when using Windows.
  * @property {(string|undefined)} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
  * @property {(string|undefined)} settings
