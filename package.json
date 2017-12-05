@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package#",
   "name": "maven",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "Maven wrapper for Node.js",
   "main": "index.js",
   "preferGlobal": false,
@@ -20,6 +20,7 @@
   ],
   "author": "Benjamin P. Jung <headcr4sh@gmail.com>",
   "contributors": [
+    "Aaron Gershman <aegershman@gmail.com>",
     "Christian Budde Christensen <budde377@gmail.com>",
     "Dmitry Broznich <xmbroz@gmail.com>",
     "Olivier Lemasle <o.lemasle@gmail.com>",
@@ -31,7 +32,7 @@
   },
   "homepage": "https://github.com/headcr4sh/node-maven",
   "engines": {
-      "node": ">=4.0.0"
+    "node": ">=4.0.0"
   },
   "typings": "./typings.d.ts"
 }
