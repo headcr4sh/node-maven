@@ -29,6 +29,11 @@
 const isWin = /^win/.test(process.platform);
 
 /**
+ * Determine if maven wrapper (./mvnw) is present in cwd root
+ */
+const mvnw = cwd => require('fs').existsSync(require('path').join(cwd, 'mvnw')) ? './mvnw' : false
+
+/**
 * A simple wrapper around child_process.spawn that returns a promise.
 * @private
 * @param {!Maven} mvn
@@ -39,7 +44,7 @@ const isWin = /^win/.test(process.platform);
 function _spawn(mvn, args) {
   const spawn = require('child_process').spawn;
   // Command to be executed.
-  let cmd = mvn.options.cmd || 'mvn';
+  let cmd = mvn.options.cmd || mvnw(mvn.options.cwd) || 'mvn';
   return new Promise((resolve, reject) => {
     if (isWin) {
       args.unshift(cmd);
@@ -118,8 +123,8 @@ function _run(mvn, commands, defines) {
  * @property {(string|undefined)} cwd
  *   Working directory (Default is: <code>process.cwd()</code>)
  * @property {{string|undefined}} cmd
- *   Maven executable relative to <code>cwd</code>. Default is 'mvn' or 
- *   'mvn.bat' when using Windows.
+ *   Maven executable relative to <code>cwd</code>. Default is './mvnw' if the mvnw 
+ *   executable is in your project root. Otherwise, default is 'mvn' or 'mvn.bat' when using Windows.
  * @property {(string|undefined)} file
  *   Filename of the POM. (Results in <code>-f ${file}</code>)
  * @property {(string|undefined)} settings
