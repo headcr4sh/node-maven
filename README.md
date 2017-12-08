@@ -30,7 +30,7 @@ The following options can be passed to the <code>create</code> method:
 #### `cwd` (default: ```process.cwd()```)
 This parameter can be used to define the working directory when invoking the Maven command line.
 
-#### `cmd` (default: ```./mvnw``` if in project root, otherwise ```mvn``` (or ```mvn.bat``` on Windows))
+#### `cmd` (default: ```./mvnw``` if present in project root, otherwise ```mvn``` (or ```mvn.bat``` on Windows))
 Maven executable relative to `cwd`. For example, `cwd: '/usr/local/bin/mvn`
 
 #### `file` (default: ```undefined```)
