@@ -30,8 +30,8 @@ The following options can be passed to the <code>create</code> method:
 #### `cwd` (default: ```process.cwd()```)
 This parameter can be used to define the working directory when invoking the Maven command line.
 
-#### `cmd` (default: ```mvn``` (or ```mvn.bat``` on Windows))
-Maven executable relative to `cwd`. If your project uses the maven wrapper, consider `'cmd': './mvnw'`; otherwise, if you use your system-level installation of `maven`, you likely don't need to change this.
+#### `cmd` (default: ```./mvnw``` if present in project root, otherwise ```mvn``` (or ```mvn.bat``` on Windows))
+Maven executable relative to `cwd`. For example, `cwd: '/usr/local/bin/mvn`
 
 #### `file` (default: ```undefined```)
 Can be used to pass a specific POM file to the Maven command line. If nothing is specified, the Maven process itself will look for a file called ```pom.xml``` in the base directory.

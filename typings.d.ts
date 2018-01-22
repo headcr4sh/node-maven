@@ -20,7 +20,8 @@
 type MavenOptions = {
     /** Working directory (Default is: <code>process.cwd()</code>) */
     cwd?: string,
-    /** Maven executable relative to <code>cwd</code>. Default is 'mvn' or 'mvn.bat' when using Windows */
+    /** Maven executable relative to <code>cwd</code>. Default is './mvnw' if the mvnw executable is in your project root. 
+     * Otherwise, default is 'mvn' or 'mvn.bat' when using Windows. */
     cmd?: string,
     /** Filename of the POM. (Results in <code>-f ${file}</code>) */
     file?: string,
