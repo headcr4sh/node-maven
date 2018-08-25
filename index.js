@@ -31,7 +31,10 @@ const isWin = /^win/.test(process.platform);
 /**
  * Determine if maven wrapper (./mvnw) is present in cwd root
  */
-const mvnw = cwd => require('fs').existsSync(require('path').join(cwd, 'mvnw')) ? './mvnw' : false
+const mvnw = cwd => {
+    const cmd = require("path").resolve(cwd, "mvnw");
+    return require("fs").existsSync(cmd) ? cmd : false;
+};
 
 /**
 * A simple wrapper around child_process.spawn that returns a promise.
