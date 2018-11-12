@@ -17,7 +17,7 @@
 /**
  * Options to be used when creating new Maven wrapper instances.
  */
-type MavenOptions = {
+export type MavenOptions = {
     /** Working directory (Default is: <code>process.cwd()</code>) */
     cwd?: string,
     /** Maven executable relative to <code>cwd</code>. Default is './mvnw' if the mvnw executable is in your project root. 
