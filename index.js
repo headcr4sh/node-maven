@@ -55,7 +55,7 @@ function _spawn(mvn, args) {
       args.unshift('/s');
       cmd = process.env.COMSPEC || 'cmd.exe';
     }
-    const proc = spawn(cmd, args, { 'cwd': mvn.options.cwd });
+    const proc = spawn(cmd, args, { 'cwd': mvn.options.cwd, stdio: [process.stdin, process.stdout, process.stderr] });
     proc.on('error', reject);
     proc.on('exit', (code, signal) => {
       if (code !== 0) {
@@ -64,8 +64,6 @@ function _spawn(mvn, args) {
         resolve();
       }
     });
-    proc.stdout.on('data', process.stdout.write.bind(process.stdout));
-    proc.stderr.on('data', process.stderr.write.bind(process.stderr));
   });
 };
 
