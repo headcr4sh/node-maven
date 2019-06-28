@@ -4,17 +4,15 @@ This file lists all of the people that contributed to this project so far.
 
 ## Maintainer
 
-* Benjamin P. Jung lt;headcr4sh@gmail.comgt;
+* Benjamin P. Jung &lt;headcr4sh@gmail.com&gt;
 
 ## Contributors
 
-* Aaron Gershman lt;aegershman@gmail.comgt;
-* Åsmund Grammeltvedt lt;asgramme@microsoft.comgt;
-* Christian Budde Christensen lt;budde377@gmail.comgt;
-* Dmitry Broznich lt;xmbroz@gmail.comgt;
-* Olivier Lemasle lt;o.lemasle@gmail.comgt;
-* Ruben lt;rr@headwire.comgt;
-* Yuri Bett lt;yuribett@gmail.comgt;
-* 杨博 (Yang Bo) lt;pop.atry@gmail.comgt;
-
-
+* Aaron Gershman &lt;aegershman@gmail.com&gt;
+* Åsmund Grammeltvedt &lt;asgramme@microsoft.com&gt;
+* Christian Budde Christensen &lt;budde377@gmail.com&gt;
+* Dmitry Broznich &lt;xmbroz@gmail.com&gt;
+* Olivier Lemasle &lt;o.lemasle@gmail.com&gt;
+* Ruben &lt;rr@headwire.com&gt;
+* Yuri Bett &lt;yuribett@gmail.com&gt;
+* 杨博 (Yang Bo) &lt;pop.atry@gmail.com&gt;
