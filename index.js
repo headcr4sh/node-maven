@@ -101,6 +101,13 @@ function _run(mvn, commands, defines) {
   if (mvn.options.threads) {
       args.push(`-T ${mvn.options.threads}`);
   }
+  if (mvn.options.noTransferProgress) {
+      args.push('-ntp')
+  }
+  if (mvn.options.batchMode) {
+      args.push('-b')
+  }
+
   if (defines) {
     for (let define in defines) {
       if (defines.hasOwnProperty(define)) {

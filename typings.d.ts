@@ -41,6 +41,10 @@ export type MavenOptions = {
     nonRecursive?: boolean,
     /** Thread count, for instance 2.0C where C is core multiplied */
     threads?: number
+    /** Suppress the transfer progress when downloading/uploading in interactive mode if set to <code>true</code> */
+    noTransferProgress?: boolean,
+    /** Run in non-interactive (batch) mode (disables output color) if set to <code>true</code> */
+    batchMode?: boolean
 };
 
 /**
