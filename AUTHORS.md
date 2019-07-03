@@ -14,5 +14,6 @@ This file lists all of the people that contributed to this project so far.
 * Dmitry Broznich &lt;xmbroz@gmail.com&gt;
 * Olivier Lemasle &lt;o.lemasle@gmail.com&gt;
 * Ruben &lt;rr@headwire.com&gt;
+* Søren Jepsen &lt;soren.jepsen@se.com&gt;
 * Yuri Bett &lt;yuribett@gmail.com&gt;
 * 杨博 (Yang Bo) &lt;pop.atry@gmail.com&gt;

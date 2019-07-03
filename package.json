@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package#",
   "name": "maven",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "description": "Maven wrapper for Node.js",
   "main": "index.js",
   "preferGlobal": false,
@@ -25,7 +25,10 @@
     "Christian Budde Christensen <budde377@gmail.com>",
     "Dmitry Broznich <xmbroz@gmail.com>",
     "Olivier Lemasle <o.lemasle@gmail.com>",
-    "Yuri Bett <yuribett@gmail.com>"
+    "Ruben <rr@headwire.com>",
+    "Søren Jepsen <soren.jepsen@se.com>",
+    "Yuri Bett <yuribett@gmail.com>",
+    "杨博 (Yang Bo) <pop.atry@gmail.com>"
   ],
   "license": "Apache-2.0",
   "bugs": {
