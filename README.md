@@ -67,7 +67,7 @@ Prevents Maven from building submodules if set to ```true```.
 Thread count, for instance 2.0C where C is core multiplied
 
 #### `noTransferProgress` (default: ```false```)
-Suppress the transfer progress when downloading/uploading in interactive mode if set to ```true```.
+Suppress the transfer progress when downloading/uploading in interactive mode if set to ```true``` (requires Maven 3.6.1+).
 
 #### `batchMode` (default: ```false```)
 Run in non-interactive (batch) mode (disables output color) if set to ```true```.
