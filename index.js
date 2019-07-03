@@ -101,6 +101,13 @@ function _run(mvn, commands, defines) {
   if (mvn.options.threads) {
       args.push(`-T ${mvn.options.threads}`);
   }
+  if (mvn.options.noTransferProgress) {
+      args.push('-ntp')
+  }
+  if (mvn.options.batchMode) {
+      args.push('-b')
+  }
+
   if (defines) {
     for (let define in defines) {
       if (defines.hasOwnProperty(define)) {
@@ -145,6 +152,10 @@ function _run(mvn, commands, defines) {
  *   Prevents Maven from building submodules if set to <code>true</code>.
  * @property {(number|undefined)} threads
  *   Thread count, for instance 2.0C where C is core multiplied
+ * @property {(boolean|undefined)} noTransferProgress
+ *   Suppress the transfer progress when downloading/uploading in interactive mode if set to <code>true</code>
+ * @property {(boolean|undefined)} batchMode
+ *   Run in non-interactive (batch) mode (disables output color) if set to <code>true</code>
  */
 
 
