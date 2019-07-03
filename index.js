@@ -105,7 +105,7 @@ function _run(mvn, commands, defines) {
       args.push('-ntp')
   }
   if (mvn.options.batchMode) {
-      args.push('-b')
+      args.push('-B')
   }
 
   if (defines) {
