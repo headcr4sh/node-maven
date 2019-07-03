@@ -45,6 +45,8 @@ export type MavenOptions = {
     noTransferProgress?: boolean,
     /** Run in non-interactive (batch) mode (disables output color) if set to <code>true</code> */
     batchMode?: boolean
+    /** Log file where all build output will go (disables output color) (Results in <code>-l ${file}</code>) */
+    logFile?: string
 };
 
 /**
