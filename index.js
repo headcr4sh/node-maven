@@ -107,6 +107,9 @@ function _run(mvn, commands, defines) {
   if (mvn.options.batchMode) {
       args.push('-B')
   }
+  if (mvn.options.logFile) {
+      args.push('-l', mvn.options.logFile);
+  }
 
   if (defines) {
     for (let define in defines) {
@@ -156,6 +159,8 @@ function _run(mvn, commands, defines) {
  *   Suppress the transfer progress when downloading/uploading in interactive mode if set to <code>true</code>
  * @property {(boolean|undefined)} batchMode
  *   Run in non-interactive (batch) mode (disables output color) if set to <code>true</code>
+ * @property {(string|undefined)} logFile
+ *   Log file where all build output will go (disables output color) (Results in <code>-l ${file}</code>)
  */
 
 

@@ -72,6 +72,9 @@ Suppress the transfer progress when downloading/uploading in interactive mode if
 #### `batchMode` (default: ```false```)
 Run in non-interactive (batch) mode (disables output color) if set to ```true```.
 
+#### `logFile` (default: ```undefined```)
+Log file where all build output will go (disables output color).
+
 ## Executing Maven commands
 
 Executing Maven commands is simple, too:
