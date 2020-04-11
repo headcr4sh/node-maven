@@ -71,8 +71,9 @@ interface Maven {
      *     List of defines that will be passed to the Java VM via
      *     <code>-Dkey=value</code>
      */
-    execute(commands, defines): Promise<any>;
+    execute(commands: string | string[], defines?: { [name: string]: string }): Promise<void>;
 
 }
 
-export default Maven;
+declare const maven: Maven
+export default maven;
