@@ -74,9 +74,12 @@ function _spawn(mvn, args) {
 *     Command(s) to be executed.
 * @param {Object<string, string>} [defines]
 *     Defines to be passed to the mvn executable via "-D" flags.
+* @param {string|!Array.<string>} projects
+*     Project(s) to be build inside a maven reactor.
 */
-function _run(mvn, commands, defines) {
+function _run(mvn, commands, defines, projects) {
   var args = [];
+
   if (mvn.options.settings) {
     args.push('-s', mvn.options.settings);
   }
@@ -110,6 +113,9 @@ function _run(mvn, commands, defines) {
   if (mvn.options.logFile) {
       args.push('-l', mvn.options.logFile);
   }
+  if (mvn.options.alsoMake) {
+      args.push('-am');
+  }
 
   if (defines) {
     for (let define in defines) {
@@ -118,6 +124,12 @@ function _run(mvn, commands, defines) {
       }
     }
   }
+
+  if(projects && projects.length > 0){
+    args.push('-pl');
+    args.push(projects.join(','));
+  }
+
   if (mvn.options.profiles && mvn.options.profiles.length > 0) {
     args.push(`-P${mvn.options.profiles.join(',')}`);
   }
@@ -161,6 +173,8 @@ function _run(mvn, commands, defines) {
  *   Run in non-interactive (batch) mode (disables output color) if set to <code>true</code>
  * @property {(string|undefined)} logFile
  *   Log file where all build output will go (disables output color) (Results in <code>-l ${file}</code>)
+ * @property {(boolean|undefined)} alsoMake
+ *   Builds the specific list of projects and any that depend on them, if set to <code>true</code>.
  */
 
 
@@ -196,10 +210,12 @@ class Maven {
      * @param {Object.<string, *>} [defines]
      *     List of defines that will be passed to the Java VM via
      *     <code>-Dkey=value</code>
+     * @param {!Array.<string>|string} projects
+     *     A list of projects to be executed.
      * @return {!Promise.<?>}
      */
-    execute(commands, defines) {
-        return _run(this, commands, defines);
+    execute(commands, defines, projects) {
+        return _run(this, commands, defines, projects);
     }
 }
 
