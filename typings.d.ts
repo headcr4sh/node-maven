@@ -43,6 +43,8 @@ export type MavenOptions = {
     threads?: number
     /** Suppress the transfer progress when downloading/uploading in interactive mode if set to <code>true</code> */
     noTransferProgress?: boolean,
+    /** Builds the specific list of projects and any that depend on them, if set to <code>true</code>. */
+    alsoMake?: boolean
     /** Run in non-interactive (batch) mode (disables output color) if set to <code>true</code> */
     batchMode?: boolean
     /** Log file where all build output will go (disables output color) (Results in <code>-l ${file}</code>) */
@@ -70,8 +72,10 @@ interface Maven {
      * @param defines
      *     List of defines that will be passed to the Java VM via
      *     <code>-Dkey=value</code>
+     * @param projects
+     *     List of projects to be build.
      */
-    execute(commands: string | string[], defines?: { [name: string]: string }): Promise<void>;
+    execute(commands: string | string[], defines?: { [name: string]: string }, projects?: string[]): Promise<void>;
 
 }
 

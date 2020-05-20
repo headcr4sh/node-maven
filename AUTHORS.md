@@ -12,6 +12,7 @@ This file lists all of the people that contributed to this project so far.
 * Åsmund Grammeltvedt &lt;asgramme@microsoft.com&gt;
 * Christian Budde Christensen &lt;budde377@gmail.com&gt;
 * Dmitry Broznich &lt;xmbroz@gmail.com&gt;
+* Kaustubh Gadre &lt;kaustubh.gadre@cerner.com&gt;
 * Olivier Lemasle &lt;o.lemasle@gmail.com&gt;
 * Ruben &lt;rr@headwire.com&gt;
 * Søren Jepsen &lt;soren.jepsen@se.com&gt;
